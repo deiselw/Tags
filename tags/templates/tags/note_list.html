@@ -1,0 +1,45 @@
+{% for note in note_list %}
+<div class="noteview noteview_list area__r js-notebox">
+<div class="notebox on-hover">
+  <div class="note js-note">
+    {% if note.link %}
+    <a href="{{ note.link }}" title="Note link" class="js-note-link">
+      <img 
+        alt="Note link" 
+        class="note__link" 
+        src="https://www.google.com/s2/favicons?domain={{ note.link }}" 
+        target="_blank" />
+    </a>
+    {% endif %}
+    {% if note.title %}
+    <p class="note__title js-note-title">{{ note.title }}</p>
+    {% endif %}
+    {% if note.text %}
+    <p class="note__text js-note-text">{{ note.text }}</p>
+    {% endif %}
+  </div>
+  <div class="notebox__icons on-hover__show">
+    <!-- <i class="material-icons icon icon_btn">open_with</i> -->
+    <i class="material-icons icon icon_btn js-note-edit">mode_edit</i>
+    <i 
+      class="material-icons icon icon_btn js-note-del" 
+      data-url="{% url 'tags:delete-note' note.id  %}">delete_forever</i>
+  </div>
+  <div class="notebox__tags clearfix">
+    {% for tag in note.tags.all %}
+    <div class="tag notebox__tag js-notetag{{ tag.id }}">
+      <span 
+        class="tag__icon"
+        style="color: {{ tag.color }}">#</span><!--
+      --><span 
+        class="tag__name js-notetag-name" 
+        style="color: {{ tag.color }}">{{ tag.name }}</span><!--
+      --><span 
+        class="tag__close color-disabled js-notetag-remove" 
+        data-url="{% url 'tags:remove-note-tag' note.id tag.id  %}">&times;</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+{% endfor %}

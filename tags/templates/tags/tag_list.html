@@ -1,0 +1,65 @@
+<!-- {% for tag in tag_list %}
+<div class="on-hover clearfix tagbox js-tagbox">
+  <div class="on-hover__show float-right">
+    <div class="colors">
+    	<i class="material-icons icon icon_btn colors__icon">color_lens</i>
+    	<div class="colors__palette">
+    		{% for color in color_list %}
+    			<span 
+    				class="colors__color js-tag-upd-color {% if color.id == tag.color.id %} colors__color_selected {% endif %}" 
+    				style="background-color: {{ color }}" 
+    				data-url="{% url 'tags:update-tag-color' tag.id color.id %}"></span>
+    		{% endfor %}
+    	</div>
+    </div>
+    <i class="material-icons icon icon_btn tagbox__delete-btn js-tag-del"
+      data-url="{% url 'tags:delete-tag' tag.id  %}"
+      >delete_forever</i>
+  </div>
+  <div class="chipedit rest js-tag{{ tag.id }}">
+    <span 
+      class="chipedit__item chipedit__bg text-code js-tag-color"
+      style="background-color: {{ tag.color }}">{{ tag.name }}</span>
+    <input 
+      class="chipedit__item chipedit__input text-code color-white js-tag-input js-search-val"
+      type="text" 
+      data-url="{% url 'tags:update-tag-name' tag.id  %}"
+      value="{{ tag.name }}" />
+  </div>
+</div>
+{% endfor %} -->
+{% for tag in tag_list %}
+<div id="{{ tag.id }}" class="on-hover tagbox tag clearfix area__r js-tagbox">
+	<span 
+		class="tag__icon tagbox__icon float-left"
+		style="color: {{ tag.color }}">#</span>
+	<div class="tagbox__fill rest">
+  	<input 
+  		autocomplete="off"
+  		class="tagbox__input tag__name js-tag-input" 
+  		data-url="{% url 'tags:update-tag-name' tag.id  %}"
+  		maxlength="50" 
+  		disabled="disabled" 
+  		style="color: {{ tag.color }}"
+  		type="text" 
+  		value="{{ tag.name }}" />
+		<div class="on-hover__show tagbox__menu js-tag-menu">
+			<i class="material-icons icon icon_btn colors__icon">color_lens</i>
+			<div class="colors__palette">
+    		{% for color in color_list %}
+    			<span 
+    				class="colors__color js-tag-upd-color {% if color.id == tag.color.id %} colors__color_selected {% endif %}" 
+    				style="background-color: {{ color }}" 
+    				data-url="{% url 'tags:update-tag-color' tag.id color.id %}"></span>
+    		{% endfor %}
+    	</div>
+			<i class="material-icons icon icon_btn js-tag-edit">mode_edit</i><!--
+			--><span 
+    	class="tag__close color-disabled not-displayed js-tag-cancel js-tag-reset">&times;</span><!--
+			--><i 
+			class="material-icons icon icon_btn js-tag-del js-tag-reset" 
+			data-url="{% url 'tags:delete-tag' tag.id  %}">delete_forever</i>
+  	</div>
+	</div>
+</div>
+{% endfor %}

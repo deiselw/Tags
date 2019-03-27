@@ -1,0 +1,8 @@
+/tags/__pycache__
+/tags/migrations/__pycache__
+/tagssite/__pycache__
+*.pyc
+*.map
+*.sassc
+*.scssc
+__pycache__

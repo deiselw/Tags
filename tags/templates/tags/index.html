@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Deise Luise Wrasse">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Roboto:300,400,500|Roboto+Mono:500,700|Material+Icons">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "tags/css/main.css" %}">
+  </head>
+  <body class="display">
+    <header class="ghost-center z1">
+      <i class="header-icon material-icons ghost-center__content color-white js-push">menu</i>
+      <span class="ghost-center__content text-title color-white">My Little Notes</span>
+      <i class="header-icon material-icons color-white float-right">more_vert</i>
+    </header>
+    <div class="leftcol push-left area">
+      <div class="area__scroll hover-scroll">
+        <div class="leftcol__hold">
+          <div class="area__searchbox area__l area__r">
+            <div class="searchbox">
+              <!--<i class="searchbox__icon searchbox__search material-icons">search</i>-->
+              <div class="searchbox__fill">
+                <input 
+                  autocomplete="off" 
+                  class="searchbox__input underline_primary js-tag-search js-search-input" 
+                  novalidate="novalidate" 
+                  placeholder="Search for a tag" />
+                <button 
+                  class="searchbox__icon searchbox__reset js-search-reset hidden"
+                  data-search="js-tagbox">
+                  <i class="material-icons icon icon_btn">close</i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="area__content area__l taglist js-taglist">
+            {% include "tags/tag_list.html" %}
+          </div>
+        </div>
+      </div>
+      <div class="rest">
+        
+      
+      <button 
+        class="area__action md-fab md-btn_mini md-btn_secondary js-form-action float-right" 
+        data-form="js-tagform">
+        <div class="action action_add">
+          <div class="action__part action__h"></div>
+          <div class="action__part action__v"></div>
+        </div>
+      </button>
+      <div class="area__float-form float-form rest">
+        
+      </div>
+      </div>
+    </div>
+    <main class="main push-left area">
+      <div class="area__scroll main__scroll">
+        <div class="area__searchbox area__l area__r">
+          <div class="searchbox">
+            <!--<i class="searchbox__icon searchbox__search material-icons">search</i>-->
+            <div class="searchbox__fill">
+              <input
+                autocomplete="off"
+                class="searchbox__input underline_primary js-note-search js-search-input" 
+                novalidate="novalidate" 
+                placeholder="Search for a note" />
+              <button 
+                class="searchbox__icon searchbox__reset js-search-reset hidden" 
+                data-search="js-notebox">
+                <i class="material-icons icon icon_btn">close</i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="text-right area__r">
+          <i class="material-icons js-view" data-view="list">view_stream</i>
+          <i class="material-icons js-view" data-view="column">view_column</i>
+          <i class="material-icons js-view" data-view="grid">view_quilt</i>
+        </div>
+        <div class="area__content area__l js-notelist">
+          {% include "tags/note_list.html" %}
+        </div>
+      </div>
+    </main>
+    <div class="alert z3 color-bg-primary">
+      <span class="alert__text text-body1 color-white"></span>
+    </div>
+    <div class="dialog hidden js-dialog">
+      <div class="card dialog__window js-dialog-window">
+        <div class="dialog__texts">
+          <p class="dialog__title text-title js-dialog-title"></p>
+          <p class="text-body1 js-dialog-text"></p>
+        </div>
+        <div class="dialog__buttons">
+          <span class="md-btn md-btn_box text-button js-dialog-cancel js-dialog-btn"></span>
+          <span class="md-btn md-btn_box text-button js-dialog-action js-dialog-btn"></span>
+        </div>
+      </div>
+    </div>
+    <div class="form hidden js-noteform">
+      <div class="card form__window js-noteform-window">
+        <div class="form__texts">
+          <input class="text-body1 form__text js-noteform-link" placeholder="Note link" />
+          <input class="text-body2 form__text js-noteform-title" placeholder="Note title" maxlength="100" />
+          <textarea class="text-body1 form__text form__textarea js-noteform-text" maxlength="1000" placeholder="Note text"></textarea>
+        </div>
+        <div class="form__buttons">
+          <span class="md-btn md-btn_box text-button js-noteform-cancel js-noteform-btn">cancel</span>
+          <span class="md-btn md-btn_box text-button js-noteform-action js-noteform-btn">edit</span>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="{% static "tags/js/jquery-3.2.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "tags/js/csrftoken.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "tags/js/index.js" %}"></script>
+  </body>
+</html>

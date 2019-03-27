@@ -1,0 +1,540 @@
+@import 'vendors/normalize'
+@import 'vendors/sanitize'
+
+@import 'general/mixins'
+@import 'colors/colors'
+@import 'definitions'
+@import 'utils'
+@import 'typography'
+
+@import 'components/buttons/md-btn'
+
+/* ----- Layout ----- */
+html,
+body
+  height: 100%
+
+header
+  height: $height-header
+  width: 100%
+
+.main
+  margin: 0 0 0 $width-leftcol
+  &_pushed
+    margin-left: 0
+  &__scroll
+    overflow: auto
+
+.leftcol
+  float: left
+  width: $width-leftcol
+  &_pushed
+    margin-left: -$width-leftcol
+  &__hold
+    height: 100%
+    width: $width-leftcol
+
+
+/* ----- Colors ----- */
+body
+  background-color: $color-bg
+  color: $color-text-body-on-light
+
+header
+  background-color: $color-primary
+
+@include input-placeholder
+  color: $color-text-disabled-on-light
+
+i
+  color: $color-text-disabled-on-light
+
+input
+  background-color: white
+
+.theme-primary
+  background-color: $color-primary
+  color: $color-text-body-on-dark
+
+.header-icon
+  margin: $spacing-small
+
+.card
+  background-color: white
+
+.notebox
+  background-color: $material-color-grey-100
+
+/* ----- Typography ----- */
+body, 
+textarea
+  font-family: $font-stack-sans
+
+@include input-placeholder
+  font-size: $font-size-body
+  font-weight: $font-weight-regular
+  letter-spacing: $letter-spacing-body
+  line-height: $line-height-body1
+
+input,
+p
+  margin: 0
+
+p
+  @extend .text-body1
+
+/* ----- Project specifics ----- */
+body
+  overflow: hidden
+
+i
+  cursor: pointer
+
+textarea
+  overflow: auto // prevent IE vertical scrollbar default behaviour
+
+.area
+  height: 100%
+  padding-bottom: $height-header
+  &__scroll
+    height: 100%
+  &__l
+    padding-left: $spacing-default
+  &__r
+    padding-right: $spacing-default
+  &__searchbox
+    padding-top: $spacing-large
+    padding-bottom: $spacing-large
+  &__content
+
+.float-form
+  &__input
+    border: none
+    border-bottom: 1px solid $color-text-disabled-on-light
+    outline: none
+    margin: $spacing-small 0
+    width: 100%
+  &__colors
+    margin: $spacing-small $spacing-small 0 $spacing-small
+  &__fields
+    display: inline-block
+    float: right
+    overflow: hidden
+    transition: width 0.2s ease-in-out
+    width: 0
+    &_active
+      width: 100%
+
+/* .float-form
+  &__wrap
+    margin-left: $spacing-small
+  &__input
+    border: none
+    border-bottom: 1px solid $color-text-disabled-on-light
+    outline: none
+    margin: $spacing-small 0
+    width: 100%
+  &__colors
+    margin: $spacing-small $spacing-small 0 $spacing-small
+  &__fields
+    display: inline-block
+    float: right
+    overflow: hidden
+    transition: width 0.2s ease-in-out
+    width: 0
+    &_active
+      width: 100% */
+
+/* .area
+  height: 100%
+  position: relative
+  &__scroll
+    height: 100%
+    @extend .hover-scroll
+    padding-bottom: $height-header
+  &__inner
+    height: 100%
+    &_leftcol
+      width: $width-leftcol
+  &__top
+    padding: $spacing-large $spacing-default
+  &__content
+    padding: 0 $spacing-default $spacing-large $spacing-default
+  &__bottom
+    bottom: $height-header
+    left: 0
+    position: absolute
+    width: 100% */
+
+/* ----- Components ----- */
+.push-left
+  transition: margin-left $transition-push
+  -webkit-transition: margin-left $transition-push
+
+.button-reset
+  background: none
+  border: 0
+  cursor: pointer
+  margin: 0
+  outline: none
+  padding: 0
+  text-align: center
+  user-select: none
+
+$searchbox-icon-width: $width-icon + $spacing-small*2
+.searchbox
+  height: $height-searchbox
+  margin: 0
+  padding: 0
+  position: relative
+  width: 100%
+  &__search
+    float: left
+  &__fill
+    overflow: hidden
+  &__input
+    background: none
+    border: none
+    line-height: $height-searchbox
+    margin: 0
+    outline: none
+    padding: 0 $searchbox-icon-width 0 0
+    width: 100%
+    //&:not(:valid)+.searchbox__reset
+      //visibility: hidden
+  &__icon
+    margin: 0
+    padding-top: ($height-searchbox - $width-icon)/2
+    text-align: center
+    width: $searchbox-icon-width
+  &__reset
+    @extend .button-reset
+    position: absolute
+    right: 0
+    top: 0
+
+.ghost-center
+  &:before
+    content: ""
+    display: inline-block
+    height: 100%
+    vertical-align: middle
+  &__content
+    display: inline-block
+    vertical-align: middle
+
+.on-hover
+  &__show
+    visibility: hidden
+  &:hover 
+    .on-hover__show
+      visibility: visible
+    .on-hover__hide
+      visibility: hidden
+
+@include scrollbar(5px, $color-text-disabled-on-light, transparent)
+
+.display
+  position: relative
+  &__bottom
+    bottom: 0
+    left: 50%
+    position: absolute
+    transform: translateX(-50%)
+  &__rbottom
+    bottom: 0
+    position: absolute
+    right: 0
+  &__middle
+    left: 50%
+    position: absolute
+    top: 50%
+    transform: translate(-50%, 50%)
+
+.card
+  box-shadow: $box-shaddow-card
+  border-radius: 3px
+
+.chip
+  border-radius: 25px
+  display: inline-block
+  line-height: 1.5rem // 24px/16px
+  padding: 0 0.75rem
+  text-align: center
+  &__item
+    display: inline-block
+    line-height: inherit
+    vertical-align: top
+  &__close
+    cursor: pointer
+    margin: 0 0 0 0.2rem
+    padding: 0
+    user-select: none
+  &__text
+    overflow: hidden
+    text-overflow: ellipsis
+    margin: 0
+    max-width: 10rem
+    padding: 0 0 2px 0 // line-height adjust
+
+.chipedit
+  display: inline-block
+  line-height: 1.5rem
+  //max-width: 10rem
+  position: relative
+  text-align: center
+  &__item
+    display: inline-block
+    line-height: inherit
+    margin: 0
+    overflow: hidden
+    padding: 0 0.75rem 2px 0.75rem // 2px for line-height adjust
+    text-overflow: ellipsis
+  &__bg
+    border-radius: 25px
+    color: transparent
+  &__input
+    background-color: transparent
+    border: none
+    left: 0
+    outline: none
+    position: absolute
+    top: 0
+
+/* Important: to avoid space between palette colors 
+ * from inline-block, put comments between html tags.
+ */
+$width-color: 1rem // 16px/16px
+.colors
+  display: inline-block
+  position: relative
+  width: $width-icon
+  &__icon
+    &:hover + .colors__palette
+      visibility: visible
+  &__palette
+    padding: ($width-icon - $width-color)/2 0 0 0
+    position: absolute
+    right: 100%
+    top: 0
+    visibility: hidden
+    white-space: nowrap
+    &:hover
+      visibility: visible
+  &__color
+    border: none
+    cursor: pointer
+    display: inline-block
+    height: $width-color
+    margin: 0
+    padding: 0
+    width: $width-color
+    &_selected
+      border: 2px solid grey
+
+.color-bg-disabled
+  background-color: $color-text-disabled-on-light
+.color-bg-primary
+  background-color: $color-primary
+.color-bg-secondary
+  background-color: $color-secondary
+.color-bg-white
+  background-color: white
+.color-secondary
+  color: $color-secondary
+.color-white
+  color: white
+.color-disabled
+  color: $color-text-disabled-on-light
+
+.hover-scroll
+  overflow: hidden
+  &:hover
+    overflow-y: auto
+
+.icon
+  font-size: $width-icon
+  width: $width-icon
+  &_btn
+    cursor: pointer
+
+.rounded
+  border-radius: 2px
+
+.overlay
+  background-color: rgba(0,0,0,0.4)
+  height: 100%
+  left: 0
+  position: fixed
+  top: 0
+  width: 100%
+
+.dialog
+  @extend .overlay
+  &__window
+    margin: 10% auto
+    max-width: 35.5rem // 568px/16px
+    min-width: 18rem // 288px/16px
+  &__texts
+    padding: 1.5rem //24px/16px
+  &__title
+    margin-bottom: 1.25rem // 20px/16px
+  &__buttons
+    text-align: right
+
+.alert
+  border-radius: 2px
+  bottom: 0
+  left: 50%
+  max-width: 35.5rem // 568px/16px
+  min-width: 18rem // 288px/16px
+  position: absolute
+  text-align: left
+  transform: translate(-50%, 100%)
+  -webkit-transform: translate(-50%, 100%)
+  transition: transform $transition-alert
+  -webkit-transition: -webkit-transform $transition-alert
+  &_active
+    transform: translate(-50%, 0)
+    -webkit-transform: translate(-50%, 0)
+  &__text
+    float: left
+    overflow: hidden
+    padding: $spacing-small $spacing-default
+    
+.round
+  border-radius: 25px
+
+.action
+  height: 100%
+  position: relative
+  width: 100%
+  &__part
+    background-color: white
+    height: 2px
+    left: 50%
+    position: absolute
+    top: 50%
+    transition: all 0.2s ease
+  &_add
+    .action__h
+      transform: translateX(-50%)
+      width: 40%
+    .action__v
+      transform: translate(-50%) rotate(90deg)
+      width: 40%
+  &_submit
+    .action__h
+      transform: translate(-115%, 115%) rotate(45deg)
+      width: 25%
+    .action__v
+      transform: translate(-30%) rotate(135deg)
+      width: 50%
+
+$width-tag-menu: $width-icon*3
+.tagbox
+  position: relative
+  width: 100%
+  &__icon
+    margin-right: 0.0625rem
+  &__fill
+    padding-right: $width-tag-menu
+  &__input
+    width: 100%
+    &:disabled
+      user-select: none
+  &__menu
+    position: absolute
+    right: 0
+    top: 0
+    width: $width-tag-menu
+
+.tag
+  &__icon
+    font-family: $font-stack-mono
+    font-weight: $font-weight-bold
+    margin-top: 0.125rem
+    user-select: none
+  &__name
+    background-color: transparent
+    border: none
+    font-family: $font-stack-mono
+    font-size: $font-size-code
+    font-weight: $font-weight-medium
+    line-height: $line-height-body1
+    margin: 0
+    outline: none
+    overflow: hidden
+    padding: 0
+    text-overflow: ellipsis
+  &__close
+    cursor: pointer
+    font-size: 1.25rem // 20px/16px
+    opacity: 0
+  &:hover &__close
+    opacity: 1
+
+.notebox
+  padding: $spacing-default
+  position: relative
+  margin-bottom: $spacing-default
+  &_grid
+    float: left
+    width: 33.333%
+  &__tags
+    @extend .clearfix
+    overflow: hidden
+  &__tag
+    float: left
+  &__icons
+    position: absolute
+    right: $spacing-default
+    top: $spacing-default
+  &__link
+    width: 16px
+    height: 16px
+
+.note
+  position: relative
+  &__title
+    @extend .text-body2
+    margin: 0
+  &__text
+    margin: 0
+
+.noteview
+  &_list
+  &_grid
+    float: left
+    width: 33.333%
+  &_column
+    float: left
+    width: 33.333%
+    height: 100%
+
+.form
+  @extend .overlay
+  &__window
+    margin: 10% auto
+    max-height: 100%
+    max-width: 100%
+    min-width: 18rem // 288px/16px
+    width: 36rem
+  &__text
+    border: none
+    display: block
+    outline: none
+    width: 100%
+  &__textarea
+    height: auto
+    resize: none
+  &__texts
+    padding: 1.5rem //24px/16px
+  &__buttons
+    text-align: right
+
+/* ----- Themes ----- */
+.underline_primary
+  border-bottom: 1px solid $color-text-disabled-on-light
+  &:focus
+    border-color: $color-primary
